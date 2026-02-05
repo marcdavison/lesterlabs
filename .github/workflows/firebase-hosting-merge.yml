@@ -8,6 +8,9 @@ on:
       - main
 jobs:
   build_and_deploy:
+    if: |
+      contains(github.event.head_commit.message, 'release:') ||
+      contains(github.event.head_commit.message, 'deploy:')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
